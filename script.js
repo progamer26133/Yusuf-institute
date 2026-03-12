@@ -5,8 +5,6 @@ const themeToggle = document.getElementById("themeToggle");
 const backToTop = document.getElementById("backToTop");
 const quoteText = document.getElementById("quoteText");
 const nextQuoteBtn = document.getElementById("nextQuoteBtn");
-const contactForm = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
 
 const quotes = [
   "“Education is not the filling of a pail, but the lighting of a fire.”",
@@ -144,42 +142,6 @@ function initActiveNav() {
   onScroll();
 }
 
-function initContactForm() {
-  if (!contactForm || !formStatus) return;
-
-  const fields = ["name", "email", "message"].map((id) => document.getElementById(id));
-
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    let valid = true;
-
-    fields.forEach((field) => {
-      if (!field) return;
-      const isFieldValid = field.value.trim().length > 0;
-      field.classList.toggle("invalid", !isFieldValid);
-      if (!isFieldValid) valid = false;
-    });
-
-    const emailField = document.getElementById("email");
-    if (emailField) {
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim());
-      emailField.classList.toggle("invalid", !emailOk);
-      if (!emailOk) valid = false;
-    }
-
-    if (!valid) {
-      formStatus.textContent = "Please fill all fields with valid information.";
-      formStatus.style.color = "#dc2626";
-      return;
-    }
-
-    formStatus.textContent = "✅ Demo submitted! In real website, this will send to Yusuf Areeb.";
-    formStatus.style.color = "#16a34a";
-    contactForm.reset();
-  });
-}
-
 setYear();
 initMenu();
 initTheme();
@@ -188,4 +150,3 @@ initQuoteRotator();
 initCounterAnimation();
 initRevealOnScroll();
 initActiveNav();
-initContactForm();
